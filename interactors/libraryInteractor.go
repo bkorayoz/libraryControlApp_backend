@@ -1,71 +1,36 @@
 package interactors
 
+import (
+	"libraryControlApp_backend/commonStructs"
+	"libraryControlApp_backend/gateways/postgresql"
+)
+
 type LibraryInteractor struct{}
 
-func (LibraryInteractor) GetAllBooks() string {
-	return "GetAllBooks()"
+func (LibraryInteractor) Search(input string) string {
+	return "Search"
 }
 
-func (LibraryInteractor) GetBookById(input int64) string {
-	return "GetBookById"
+func (LibraryInteractor) Filter(input commonStructs.Filter) string {
+	return "Filter"
 }
 
-func (LibraryInteractor) GetBookByName(input string) string {
-	return "GetBookByName"
+func (LibraryInteractor) AddBook(input commonStructs.BookInput) error {
+	lib := postgresql.LibraryData{}
+	return lib.AddBook(input.Name, input.AuthorId, input.TypeId, input.PublishDate, input.LocationId, input.PublisherId)
 }
 
-func (LibraryInteractor) GetBooksByAuthor(input string) string {
-	return "GetBooksByAuthor"
+func (LibraryInteractor) AddAuthor(input string) error {
+	lib := postgresql.LibraryData{}
+	return lib.Add("authors", input)
 }
 
-func (LibraryInteractor) GetBooksByType(input string) {
-
+func (LibraryInteractor) AddType(input string) error {
+	lib := postgresql.LibraryData{}
+	return lib.Add("types", input)
 }
 
-func (LibraryInteractor) GetBooksByDate(start, end string) {
-
-}
-
-func (LibraryInteractor) GetBooksByLocation(input string) {
-
-}
-
-func (LibraryInteractor) AddBook(name string, authorId int64, typeId int64, publishDate string, locationId int64, publisherId int64) {
-
-}
-
-func (LibraryInteractor) DeleteBook(id int64) {
-
-}
-
-func (LibraryInteractor) GetAllLocations() {
-
-}
-
-func (LibraryInteractor) GetLocationById(input int64) {
-
-}
-
-func (LibraryInteractor) AddLocation(blok string, shelf string) {
-
-}
-
-func (LibraryInteractor) RemoveLocation(input int64) {
-
-}
-
-func (LibraryInteractor) GetAll(tableName string) {
-
-}
-
-func (LibraryInteractor) GetById(tableName string, id int64) {
-
-}
-
-func (LibraryInteractor) Add(tableName string, name string) {
-
-}
-
-func (LibraryInteractor) Remove(tableName string, id int64) {
-
+func (LibraryInteractor) AddPublisher(input string) error {
+	lib := postgresql.LibraryData{}
+	return lib.Add("publishers", input)
 }

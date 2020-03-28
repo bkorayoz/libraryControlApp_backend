@@ -3,6 +3,8 @@ package server
 import (
 	"MapApp/common/logger"
 	"errors"
+	"libraryControlApp_backend/interactors"
+	"libraryControlApp_backend/interfaces"
 	"log"
 	"net/http"
 	"strings"
@@ -14,12 +16,16 @@ import (
 
 const ApiKey = "6ItOQZeFus1Rw3NODa3b5JZNIgMFzc4c"
 
+var Usecase interfaces.LibraryUsecase
+
 func StartServer() {
 	router := gin.New()
 	router.Use(gin.Recovery(), Logger(), Headers())
 	router.Use(gzip.Gzip(gzip.DefaultCompression))
 
 	InitRoutes(router)
+
+	Usecase = interactors.LibraryInteractor{}
 
 	log.Fatal(http.ListenAndServe(":8090", router))
 }

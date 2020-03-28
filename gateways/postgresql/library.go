@@ -59,8 +59,9 @@ func (LibraryData) GetBooksByLocation(input string) {
 
 }
 
-func (LibraryData) AddBook(name string, authorId int64, typeId int64, publishDate string, locationId int64, publisherId int64) {
-
+func (LibraryData) AddBook(name string, authorId int64, typeId int64, publishDate string, locationId int64, publisherId int64) error {
+	println("AddBook")
+	return nil
 }
 
 func (LibraryData) DeleteBook(id int64) {
@@ -91,10 +92,12 @@ func (LibraryData) GetById(tableName string, id int64) {
 
 }
 
-func (LibraryData) Add(tableName string, name string) {
-
+func (LibraryData) Add(tableName string, name string) error {
+	println("Add -> ", tableName, " ", name)
+	return nil
 }
 
-func (LibraryData) Remove(tableName string, id int64) {
-
+func (LibraryData) Remove(tableName string, id int64) error {
+	println("Remove -> ", tableName, " ", id)
+	return nil
 }
